@@ -1,0 +1,86 @@
+* 4-bit Address, 8-bit Data ROM Model
+* Working version for LTspice
+
+*------------------------------------------------------------------------------
+* A[3:0] - address inputs
+* D[7:0] - data outputs
+* Da     - debug output - 'analog' output of the ROM LUT (lookup table), can be removed later
+*------------------------------------------------------------------------------
+.subckt ROM_16x8 A0 A1 A2 A3 D0 D1 D2 D3 D4 D5 D6 D7 Da
+
+
+*--- input resistors (to prevent info verbose messages)
+.param Rin 100G
+
+RA0 A0 0 {Rin}
+RA1 A1 0 {Rin}
+RA2 A2 0 {Rin}
+RA3 A3 0 {Rin}
+
+*--- convert 'true' analog levels to logic levels (0,1)
+.param TRSH_INPUT 0.0 ; it is better to set 0.2 or something like
+
+BVA0 A0_buf 0 V = if(V(A0) > {TRSH_INPUT}, 1, 0) 
+BVA1 A1_buf 0 V = if(V(A1) > {TRSH_INPUT}, 1, 0) 
+BVA2 A2_buf 0 V = if(V(A2) > {TRSH_INPUT}, 1, 0) 
+BVA3 A3_buf 0 V = if(V(A3) > {TRSH_INPUT}, 1, 0) 
+
+*--- functions
+.func test_bit(x,n) { if(floor(floor(x/(2**n))/2) == floor(x/(2**n))/2, 0, 1) }
+.func addr()  { V(A0_buf) + 2*V(A1_buf) + 4*V(A2_buf) + 8*V(A3_buf) }
+
+*--- lookup table ROM[addr] -> data
+BVa Da 0 V = table(addr(),
++  0,   0,
++  1,   1,
++  2,   2,
++  3,   3,
++  4,   4,
++  5, 255,
++  6, 127,
++  7, 128,
++  8, 132,
++  9,  64,
++ 10,  63,
++ 11,  65,
++ 12,  77,
++ 13,  16,
++ 14,  15,
++ 15,  22 )
+
+*--- bit slices
+BV0 D0 0 V = test_bit(V(Da), 0)
+BV1 D1 0 V = test_bit(V(Da), 1)
+BV2 D2 0 V = test_bit(V(Da), 2)
+BV3 D3 0 V = test_bit(V(Da), 3)
+BV4 D4 0 V = test_bit(V(Da), 4)
+BV5 D5 0 V = test_bit(V(Da), 5)
+BV6 D6 0 V = test_bit(V(Da), 6)
+BV7 D7 0 V = test_bit(V(Da), 7)
+
+*--- output resistors (to prevent warnings)
+.param Rout 10G
+
+RD0 D0 0 {Rout}
+RD1 D1 0 {Rout}
+RD2 D2 0 {Rout}
+RD3 D3 0 {Rout}
+RD4 D4 0 {Rout}
+RD5 D5 0 {Rout}
+RD6 D6 0 {Rout}
+RD7 D7 0 {Rout}
+
+*--- test ROM outputs for correctness, rom_selftest must be very small (ideally == 0)
+.meas rom_selftest rms V(da)-(V(d0)+2*V(d1)+4*V(d2)+8*V(d3)+16*V(d4)+32*V(d5)+64*V(d6)+128*V(d7))
+
+.ends ROM_4x8
+
+
+*------------------------------------------------------------------------------
+*--- snippets
+
+*.func log2_safe(x) = 2**(floor(ln(x + 1e-12)/ln(2)))
+
+#BV0 D0 0 V = test_bit(table(addr(), 0, 16, 1, 0, 2, 17, 3, 19), 1)
+#BV1 D1 0 V = test_bit(table(addr(), 0, 16, 1, 0, 2, 17, 3, 19), 2)
+

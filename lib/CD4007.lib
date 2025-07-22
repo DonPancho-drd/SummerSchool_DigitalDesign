@@ -1,0 +1,235 @@
+*------------------------------------------------------------------------------
+*
+* --- Level 7 models ---
+*
+* 1. CD4007_L7a - from "CD4007 SPICE model [2].pdf" page 8
+* 2. CD4007_L7b - from "CD4007 SPICE model [1].pdf" page 2
+* 3. CD4007_L7c - from "CD4007 SPICE model [1].pdf" page 3
+*
+*
+* --- Level 1 models ---
+*
+* 4. CD4007_L1a - from from LargeCollection SwitchAna.Lib
+* 5. CD4007_L1b - from LargeCollection 4007spdt.sub
+* 6. CD4007_L1c - from 5824.CD4007.lib
+* 7. CD4007_L1d - ???
+*------------------------------------------------------------------------------
+
+
+*------------------------------------------------------------------------------
+* from from "CD4007 SPICE model [2].pdf" page 8
+*------------------------------------------------------------------------------
+.lib CD4007_L7a
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=10u W=170u Ad=8500p As=8500p Pd=440u Ps=440u NRD=0.1 NRS=0.1
+  	M1	dr gt src subs CD4007n L={L} W={W} Ad={Ad} As={As} Pd={Pd} Ps={Ps} NRD={NRD} NRS={NRS}
+
+	*Note: Properties L=10u W=170u Ad=8500p As=8500p Pd=440u Ps=440u NRD=0.1 NRS=0.1
+	.model CD4007n nmos(LEVEL=7 VERSION=3.1 CAPMOD=2 MOBMOD=1
+				+TOX=4E-8 XJ=2.9E-7 NCH=4E15 NSUB=5.33E15 XT=8.66E-8
+				+VTH0=1.4 U0= 1300 WINT=2.0E-7 LINT=1E-7
+				+NGATE=5E20 RSH=300 JS=3.23E-8 JSW=3.23E-8 CJ=6.8E-8 MJ=0.5 PB=0.95
+				+CJSW=1.26E-10 MJSW=0.5 PBSW=0.95 PCLM=5
+				+CGSO=3.4E-10 CGDO=3.4E-10 CGBO=5.75E-10)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=10u W=360u Ad=18000p As=18000p Pd=820u Ps=820u NRD=0.054 NRS=0.054
+  	M1	dr gt src subs CD4007p L={L} W={W} Ad={Ad} As={As} Pd={Pd} Ps={Ps} NRD={NRD} NRS={NRS}
+
+	*Note: Properties L=10u W=360u Ad=18000p As=18000p Pd=820u Ps=820u NRS=0.054 NRD=0.054
+	.model CD4007p pmos(LEVEL=7 VERSION=3.1 CAPMOD=2 MOBMOD=1
+				+TOX=5E-8 XJ=2.26E-7 NCH=1E15 NSUB=8E14 XT=8.66E-8
+				+VTH0=-1.65 U0= 400 WINT=1.0E-6 LINT=1E-6
+				+NGATE=5E20 JS=3.51E-8 JSW=3.51E-8 CJ=5.28E-8 MJ=0.5 PB=0.94 RSH=1347
+				+CJSW=1.19E-10 MJSW=0.5 PBSW=0.94 PCLM=5
+				+CGSO=4.5E-10 CGDO=4.5E-10 CGBO=5.75E-10)
+.ends CD4007p
+
+.endl CD4007_L7a ***
+
+
+*------------------------------------------------------------------------------
+* from "CD4007 SPICE model [1].pdf" page 2
+*------------------------------------------------------------------------------
+.lib CD4007_L7b
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=2u W=160u Ad=750p As=550p Pd=330u Ps=220u NRD=0.1 NRS=0.1
+  	M1	dr gt src subs CD4007n L={L} W={W} Ad={Ad} As={As} Pd={Pd} Ps={Ps} NRD={NRD} NRS={NRS}
+
+        *Note: Properties L=2u W=160u Ad=750p As=550p Pd=330u Ps=220u nrd=0.1 nrs=0.1
+	.model CD4007n nmos(LEVEL=7 VERSION=3.1 CAPMOD=2 MOBMOD=1
+				+TOX=1E-7 NCH=1.45E17 NSUB=5.33E16 XT=8.66E-8
+				+VTH0=1.0 U0= 600 WINT=2.0E-7 LINT=1E-7
+				+NGATE=5E20 RSH=1082 JS=3.23E-8 JSW=3.23E-8 CJ=3.44E-4 MJ=0.5 PB=0.95
+				+CJSW=2.07E-10 MJSW=0.5 PBSW=0.95 PCLM=5
+				+CGSO=2.3E-10 CGDO=2.3E-10 CGBO=1.06E-10)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=2u W=320u Ad=1500p As=1100p Pd=630u Ps=420u NRD=0.1 NRS=0.1
+  	M1	dr gt src subs CD4007p L={L} W={W} Ad={Ad} As={As} Pd={Pd} Ps={Ps} NRD={NRD} NRS={NRS}
+
+	*Note: Properties L=2u W=320u Ad=1500p As=1100p Pd=630u Ps=420u nrd=0.1 nrs=0.1
+	.MODEL CD4007p pmos(LEVEL=7 VERSION=3.1 CAPMOD=2 MOBMOD=1
+				+TOX=1E-7 NCH=7.12E16 NSUB=3.16E16 XT=8.66E-8
+				+VTH0=-1.0 U0= 376.72 WINT=2.0E-7 LINT=2.26E-7
+				+NGATE=5E20 RSH=1347 JS=3.51E-8 JSW=3.51E-8 CJ=3.44E-4 MJ=0.5 PB=0.94
+				+CJSW=2.07E-10 MJSW=0.5 PBSW=0.94
+				+CGSO=2.3E-10 CGDO=2.3E-10 CGBO=1.06E-10)
+.ends CD4007p
+
+.endl CD4007_L7b ***
+
+
+*------------------------------------------------------------------------------
+* from "CD4007 SPICE model [1].pdf" page 3
+*------------------------------------------------------------------------------
+.lib CD4007_L7c
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=2u W=160u Ad=750p As=550p Pd=330u Ps=220u NRD=0.1 NRS=0.1
+  	M1	dr gt src subs CD4007n L={L} W={W} Ad={Ad} As={As} Pd={Pd} Ps={Ps} NRD={NRD} NRS={NRS}
+
+	*Note: Properties L=2u W=160u Ad=750p As=550p Pd=330u Ps=220u nrd=0.1 nrs=0.1
+	.model CD4007n nmos(LEVEL=7 VERSION=3.1 CAPMOD=2 MOBMOD=1
+				+TOX=1E-7 NCH=1.45E17 NSUB=5.33E16 XT=8.66E-8
+				+VTH0=1.0 U0= 600 WINT=2.0E-7 LINT=1E-7
+				+NGATE=5E20 RSH=1082 JS=3.23E-8 JSW=3.23E-8 CJ=6.8E-4 MJ=0.5 PB=0.95
+				+CJSW=1.26E-10 MJSW=0.5 PBSW=0.95 PCLM=5
+				+CGSO=3.4E-10 CGDO=3.4E-10 CGBO=5.75E-10)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=2u W=320u Ad=1500p As=1100p Pd=630u Ps=420u NRD=0.1 NRS=0.1
+  	M1	dr gt src subs CD4007p L={L} W={W} Ad={Ad} As={As} Pd={Pd} Ps={Ps} NRD={NRD} NRS={NRS}
+
+	*Note: Properties L=2u W=320u Ad=1500p As=1100p Pd=630u Ps=420u nrd=0.1 nrs=0.1
+	.model CD4007p pmos(LEVEL=7 VERSION=3.1 CAPMOD=2 MOBMOD=1
+				+TOX=1E-7 NCH=7.12E16 NSUB=3.16E16 XT=8.66E-8
+				+VTH0=-1.0 U0= 376.72 WINT=2.0E-7 LINT=2.26E-7
+				+NGATE=5E20 RSH=1347 JS=3.51E-8 JSW=3.51E-8 CJ=5.28E-4 MJ=0.5 PB=0.94
+				+CJSW=1.19E-10 MJSW=0.5 PBSW=0.94
+				+CGSO=4.5E-10 CGDO=4.5E-10 CGBO=5.75E-10)
+.ends CD4007p
+
+.endl CD4007_L7c ***
+
+
+*------------------------------------------------------------------------------
+* from from LargeCollection SwitchAna.Lib
+*------------------------------------------------------------------------------
+.lib CD4007_L1a
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=10u W=30u
+  	M1	dr gt src subs CD4007n L={L} W={W}
+	.model CD4007n nmos(LEVEL=1
+				+VTO=1.44 KP=320u GAMMA=0 PHI=.6 LAMBDA=10m
+				+RD=23.2 RS=90.1 IS=16.64p CBD=2.0p CBS=2.0p CGSO=0.1p CGDO=0.1p
+				+PB=.8 TOX=1200n)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=10u W=60u
+  	M1	dr gt src subs CD4007p L={L} W={W}
+	.model CD4007p pmos(LEVEL=1
+				+VTO=-1.2 KP=110u GAMMA=0 PHI=.6 LAMBDA=40m
+				+RD=21.2 RS=62.2 IS=16.64P CBD=4.0P CBS=4.0P CGSO=0.2P CGDO=0.2P
+				+PB=.8 TOX=1200N)
+.ends CD4007p
+
+.endl CD4007_L1a ***
+
+*------------------------------------------------------------------------------
+* from LargeCollection 4007spdt.sub
+*------------------------------------------------------------------------------
+.lib CD4007_L1b
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=10u W=30u
+  	M1	dr gt src subs CD4007n L={L} W={W}
+	.model CD4007n nmos(Level=1
+				+Gamma=0 Tox=1200n Phi=.6 Rs=0 Kp=111u Vto=2.0
+				+Lambda=0.01 Rd=0 Cbd=2.0p Cbs=2.0p
+				+Pb=.8 Cgso=0.1p Cgdo=0.1p Is=16.64p N=1)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=10u W=30u
+  	M1	dr gt src subs CD4007p L={L} W={W}
+	.model CD4007p pmos(Level=1
+				+Gamma=0 Tox=1200n Phi=.6 Rs=0 Kp=55u Vto=1.5
+				+Lambda=0.04 Rd=0 Cbd=4.0p Cbs=4.0p
+				+Pb=.8 Cgso=0.2p Cgdo=0.2p Is=16.64p N=1)
+.ends CD4007p
+
+.endl CD4007_L1b ***
+
+*------------------------------------------------------------------------------
+* from 5824.CD4007.lib
+*
+* These Level 1 models were extracted from measured results. The
+* model attempts to account for the package parasitics. The simulated and
+* typical measured device capacitances are as follows:
+*
+*    NMOS: Cgs = 18pF   Cds = 14pF
+*    PMOS: Cgs = 17pF   Cds = 26pF
+*
+* Gate-to-drain capacitances were not extracted but were adjusted to
+* to help fit measured results.
+*------------------------------------------------------------------------------
+.lib CD4007_L1c
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=5u W=20u
+  	M1	dr gt src subs CD4007n L={L} W={W}
+	.model CD4007n nmos(LEVEL=1
+				+VTO    = 1.77          Kp      = 2.169e-4      GAMMA   = 4.10
+				+PHI    = 0.65          LAMBDA  = 1.5e-2        CBD     = 20e-12
+				+CBS    = 0             IS      = 1e-15         PB      = 0.87
+				+CBS    = 2e-14         CGDO    = 88e-8         CGBO    = 0
+				+CJ     = 2e-10         MJ      = 0.5           CJSW    = 1e-9
+				+MJSW   = 0.33          JS      = 1e-8          TOX     = 1.265e-10)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=5u W=100u
+  	M1	dr gt src subs CD4007p L={L} W={W}
+	.model CD4007p pmos(LEVEL=1
+				+VTO    = -1.40         KP      = 3.2e-5        GAMMA   = 3.30
+				+PHI    = 0.65          LAMBDA  = 9e-2          CBD     = 65e-12
+				+CBS    = 2e-14         IS      = 1e-15         PB      = 0.87
+				+CGSO   = 0             CGDO    = 0             CGBO    = 1e-5
+				+CJ     = 2e-10         MJ      = 0.5           CJSW    = 1e-9
+				+MJSW   = 0.33          JS      = 1e-8          TOX     = 6.89e-10)
+.ends CD4007p
+
+.endl CD4007_L1c ***
+
+*------------------------------------------------------------------------------
+* ???
+*------------------------------------------------------------------------------
+.lib CD4007_L1d
+
+*------------------------------------------------------------------------------
+.subckt CD4007n dr gt src subs params: L=10u W=30u
+  	M1	dr gt src subs CD4007n L={L} W={W}
+	.model CD4007n nmos(Level=1
+				+Gamma=0 Tox=1200n Phi=.6 Rs=0 Kp=111u Vto=2.0 Lambda=0.01
+				+Rd=0 Cbd=2.0p Cbs=2.0p Pb=.8 Cgso=0.1p
+				+Cgdo=0.1p Is=16.64p N=1)
+.ends CD4007n
+
+*------------------------------------------------------------------------------
+.subckt CD4007p dr gt src subs params: L=10u W=60u
+  	M1	dr gt src subs CD4007p L={L} W={W}
+	.model CD4007p pmos(Level=1
+				+Gamma=0 Tox=1200n Phi=.6 Rs=0 Kp=55u Vto=-1.5 Lambda=0.04
+				+Rd=0 Cbd=4.0p Cbs=4.0p Pb=.8 Cgso=0.2p
+				+Cgdo=0.2p Is=16.64p N=1)
+.ends CD4007p
+
+.endl CD4007_L1d ***
