@@ -1,3 +1,7 @@
+# Project breakdown
+
+In this repository you can find schemes of mosfets made in program LTSpice. To see files .asc/.asy/.plt you need to first install LTSpice.
+
 # 🧮 Half Adder and Full Adder Design
 
 This README describes the architecture and implementation of **half adders** and **full adders**, key components in digital arithmetic logic used for binary addition.
