@@ -1,13 +1,42 @@
 # Project breakdown
 
-In this repository you can find schemes of mosfets made in program LTSpice. To see files .asc/.asy/.plt you need to first install LTSpice.
+In this repository, you can find MOSFET circuit designs created using LTspice. To view the .asc, .asy, or .plt files, you must first install LTspice.
 
-- There was a brief reserch of MOSFETs (in directory /initial)
-- Realisation of seqential and combinational logic in /seq and in /comb. Here you will find useful logic gates, there symbols
-- In /test i checked that schemes worked correctly(not all of them is represented in this repository)
-- /rom consists of idealised model of rom for LTspice
-- in /fadder you will find 1bit full adders if defferent sort, which work i verified using scripts in /verify
-- There is a simple realisation of Program Counter (4-bit register, rom 16x8, 4-bit adder for increment, 4 multiplexers with control signal "branch")
+## Repository Structure
+
+### `/initial`
+MOSFET characteristics research and behavioral analysis
+
+### `/seq` and `/comb`
+- Sequential and combinational logic circuits
+- Commonly used logic gates with schematic symbols
+
+### `/test` 
+Circuit functionality verification tests  
+*(Note: Not all test files are included in this repository)*
+
+### `/rom`
+Idealized ROM model for LTspice simulations
+
+### `/fadder` and '/verify'
+Various 1-bit full adder implementations:
+- Verified using test scripts in `/verify`
+
+## Program Counter Implementation
+A functional 4-bit Program Counter design consisting of:
+- 4-bit register
+- 16×8 ROM
+- 4-bit adder (for increment operations) 
+- 4 multiplexers controlled by `branch` signal
+
+## Usage
+1. Clone this repository
+2. Open desired `.asc` files in LTspice
+3. Run simulations or examine circuit designs
+
+
+
+
 
 # 🧮 Half Adder and Full Adder Design
 
