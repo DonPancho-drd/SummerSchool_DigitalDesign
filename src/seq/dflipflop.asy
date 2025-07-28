@@ -11,4 +11,4 @@ PINATTR PinName D
 PINATTR SpiceOrder 2
 PIN 64 0 RIGHT 8
 PINATTR PinName Q
-PINATTR SpiceOrder 4
+PINATTR SpiceOrder 3
