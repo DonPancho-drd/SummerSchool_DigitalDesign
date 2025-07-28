@@ -1,12 +1,13 @@
 # Project breakdown
 
 In this repository you can find schemes of mosfets made in program LTSpice. To see files .asc/.asy/.plt you need to first install LTSpice.
--There was a reserch of MOSFETs (in directory /initial)
--Realisation of seqential and combinational logic in /seq and in /comb. Here you will find useful logic gates, there symbols
--In /test i checked that schemes worked correctly(not all of them is represented in this repository)
--/rom consists of idealised model of rom for LTspice
--in /fadder you will find 1bit full adders if defferent sort, which work i verified using scripts in /verify
--There is a simple realisation of Program Counter (4-bit register, rom 16x8, 4-bit adder for increment, 4 multiplexers with control signal "branch")
+
+- There was a brief reserch of MOSFETs (in directory /initial)
+- Realisation of seqential and combinational logic in /seq and in /comb. Here you will find useful logic gates, there symbols
+- In /test i checked that schemes worked correctly(not all of them is represented in this repository)
+- /rom consists of idealised model of rom for LTspice
+- in /fadder you will find 1bit full adders if defferent sort, which work i verified using scripts in /verify
+- There is a simple realisation of Program Counter (4-bit register, rom 16x8, 4-bit adder for increment, 4 multiplexers with control signal "branch")
 
 # 🧮 Half Adder and Full Adder Design
 
