@@ -2,19 +2,19 @@ import numpy as np
 from typing import List, Dict, Tuple
 
 
-N = 4
+N = 4 # N-битный сумматор
 VOLTAGE = 5.0
 VTH = 1.5
 RATIO = 0.3 # portion of a period from start where signal hasnot stabilize yet
 DELAY = 100e-9
 PERIOD = 500e-9
 HALF_PERIOD = PERIOD / 2
-TR = 20e-9
-TF = 20e-9
+TR = 20e-9  # time pulse rise
+TF = 20e-9  # time pulse fall
 
 # Порты: A[3:0] B[3:0] CIN ------- COUT[3:0] S[3:0]
-INPUT_PORTS = 9
-OUTPUT_PORTS = 8
+INPUT_PORTS = 2*N + 1
+OUTPUT_PORTS = 2*N
 COLS = INPUT_PORTS + OUTPUT_PORTS
 CNT = 2 ** INPUT_PORTS
 
