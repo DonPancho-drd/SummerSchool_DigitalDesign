@@ -18,7 +18,7 @@ Circuit functionality verification tests
 ### `/rom`
 Idealized ROM model for LTspice simulations
 
-### `/fadder` and '/verify'
+### `/fadder` and `/verify`
 Various 1-bit full adder implementations:
 - Verified using test scripts in `/verify`
 
